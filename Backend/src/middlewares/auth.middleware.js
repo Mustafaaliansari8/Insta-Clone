@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const userModel = require('../models/user.model')
+
 async function identifyUser(req, res, next){
    let token = req.cookies.token
   
@@ -23,7 +25,16 @@ async function identifyUser(req, res, next){
       })
     }
 
-    req.user = decoded
+    const user = await userModel.findById(decoded.id)
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    req.user = {
+      id: user._id,
+      username: user.username
+    }
 
     next()
 }

@@ -19,8 +19,7 @@ const userSchema = new mongoose.Schema({
         profileImage:{
           type: String,
           default: "https://ik.imagekit.io/SazidPasha87/instagram-default-user-profile-pic-flip-flops-v0-g983oflfeg4d12.jpg?updatedAt=1770910988621"
-        }
-        
+        },
     });
 
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const postRouter = express.Router()
-const {createPostController, getPostController, getPostDetails} = require("../controllers/post.controller")
+const {createPostController, getPostController, getPostDetails, likePostController} = require("../controllers/post.controller")
 const identifyUser = require("../middlewares/auth.middleware")
 
 
@@ -10,6 +10,6 @@ postRouter.get("/",identifyUser, getPostController)
 
 postRouter.get("/details/:postId",identifyUser, getPostDetails)
 
-
+postRouter.post("/like/:postId",identifyUser, likePostController)
 
 module.exports = postRouter;
